@@ -1,5 +1,5 @@
 window.onload = function() {
-    let chat=document.getElementById("chats")
+    let chat=document.getElementById("chats");
     let friendname=prompt("Enter your your name");
     let Container=document.querySelector(".Container")
     const input=document.querySelector('#Message')
@@ -15,7 +15,7 @@ window.onload = function() {
     sock2.on('typingFun',typing); 
     sock2.on('StopTypingFun',StopTyping); 
     sock2.on('updateName',Message4); 
-    
+    sock2.on('updateMessage',Message6); 
     
     
     
@@ -102,6 +102,45 @@ window.onload = function() {
           }
     }
     
+    function Message6(value){
+        
+        for(let i=0; i<value.length;i++){
+            if(value[i].name==friendname){
+                if(document.getElementById("id1")){
+                    document.getElementById("id1").remove();
+                }
+                let conatiner=document.createElement("div")
+                let conatinerContent=document.createElement("div")
+                conatiner.className="chatsConatiner2"
+                conatinerContent.className="text2"
+                conatinerContent.innerText=value[i].message
+                conatiner.appendChild(conatinerContent);
+                chat.appendChild(conatiner);
+                shouldScroll = Container.scrollTop + Container.clientHeight === Container.scrollHeight;
+                if (!shouldScroll) {
+                    scrollToBottom();
+                  }
+               }
+               else{
+                    if(document.getElementById("id1")){
+                        document.getElementById("id1").remove();
+                    }
+                    let conatiner=document.createElement("div")
+                    let conatinerContent=document.createElement("div")
+                    conatiner.className="chatsConatiner1"
+                    conatinerContent.className="text1"
+                    conatinerContent.innerText=value[i].message
+                    conatiner.appendChild(conatinerContent);
+                    chat.appendChild(conatiner);
+                    play()
+        
+                    shouldScroll = Container.scrollTop + Container.clientHeight === Container.scrollHeight;
+                    if (!shouldScroll) {
+                        scrollToBottom();
+                    }
+               }
+        }
+    }
     function typing(){
         
         

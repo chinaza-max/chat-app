@@ -25,9 +25,25 @@ app.get('/:id',function(req,res){
 
 io.of("/letgo").on('connection', (sock) => { 
     sock.on("room",(data)=>{
+
+        con.query(`USE mydb2`);
+
         sock.join(data.roomName)
         let roomNO=  Array.from(io.of("/letgo").in(data.roomName).adapter.rooms);
       
+
+        let sql=`CREATE TABLE IF NOT EXISTS ?? (name VARCHAR(255), message VARCHAR(255), room VARCHAR(255))`;
+                            con.query(sql,[data.roomName],(err,result)=>{
+                                if(err) throw err;
+                            })
+
+        let sql2=`SELECT * FROM ??`
+        con.query(sql2,[data.roomName] ,function (err, result, fields) {
+            if (err) throw err;
+      
+            sock.emit('updateMessage',result);
+        });
+
         for(room in roomNO){
             if(roomNO[room][0]==data.roomName){
                 if(roomNO[parseInt(room)+1]){
@@ -53,27 +69,13 @@ io.of("/letgo").on('connection', (sock) => {
 
     //handles chats
     sock.on("roomChats",(data)=>{
-            console.log(data)
-
-
-            con.query(`USE mydb2`);
-            let sql=`CREATE TABLE IF NOT EXISTS ?? (name VARCHAR(255), message VARCHAR(255), room VARCHAR(255))`;
-            con.query(sql,[data.room],(err,result)=>{
-                if(err) throw err;
-                console.log(result)
-            })
-
-            let sql2 = "INSERT INTO ?? (`name`, `message`,`room`) VALUES ('"+data.friendname+"','"+data.message+"','"+data.room+"')";
-            con.query(sql2,[data.room], function (err, result) {
+    
+            let sql = "INSERT INTO ?? (`name`, `message`,`room`) VALUES ('"+data.friendname+"','"+data.message+"','"+data.room+"')";
+            con.query(sql,[data.room], function (err, result) {
                 if (err) throw err;
-                console.log("1 record inserted");
             });
 
-              //('"+timestamp.toString()+"','"+eventname+"', '"+setname+"',"+duration+", "+hotspotid+", '"+hotspotname+"', "+playlistid+", '"+playlistname+"', '"+playlisttype+"', "+playlistassetid+", '"+playlisttitle+"')
-
-
-        sock
-        .to(data.room).emit("chats",data)
+            sock.to(data.room).emit("chats",data)
     })
 
     sock.on("Typing",(room)=>{
@@ -84,11 +86,8 @@ io.of("/letgo").on('connection', (sock) => {
         sock
         .to(room).emit("StopTypingFun","")
     })
-  
 });
 
 server.listen(8080,()=>{
     console.log('Started on 8080');
-}); 
-//https://stackoverflow.com/questions/30829878/variable-as-table-name-in-node-js-mysql
-//https://stackoverflow.com/questions/53751902/node-js-mysql-insert-query-of-multiple-variables-er-parse-error
+});
