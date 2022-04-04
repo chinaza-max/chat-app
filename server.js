@@ -63,7 +63,7 @@ io.of("/letgo").on('connection', (sock) => {
                 console.log(result)
             })
 
-            let sql2 = "INSERT INTO ?? (`name`, `message`,`room`) VALUES ("+data.friendname+", "+data.message+", '"+data.room+"')";
+            let sql2 = "INSERT INTO ?? (`name`, `message`,`room`) VALUES ('"+data.friendname+"','"+data.message+"','"+data.room+"')";
             con.query(sql2,[data.room], function (err, result) {
                 if (err) throw err;
                 console.log("1 record inserted");
