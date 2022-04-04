@@ -63,11 +63,14 @@ io.of("/letgo").on('connection', (sock) => {
                 console.log(result)
             })
 
-            let sq2 = "INSERT INTO ??(name VARCHAR(255), message VARCHAR(255), room VARCHAR(255)) VALUES ?";
-            con.query(sq2,[data.room],[data.friendname,data.message,data.room], function (err, result) {
+            let sql2 = "INSERT INTO ?? (`name`, `message`,`room`) VALUES ("+data.friendname+", "+data.message+", '"+data.room+"')";
+            con.query(sql2,[data.room], function (err, result) {
                 if (err) throw err;
                 console.log("1 record inserted");
-              });
+            });
+
+              //('"+timestamp.toString()+"','"+eventname+"', '"+setname+"',"+duration+", "+hotspotid+", '"+hotspotname+"', "+playlistid+", '"+playlistname+"', '"+playlisttype+"', "+playlistassetid+", '"+playlisttitle+"')
+
 
         sock
         .to(data.room).emit("chats",data)
@@ -88,3 +91,4 @@ server.listen(8080,()=>{
     console.log('Started on 8080');
 }); 
 //https://stackoverflow.com/questions/30829878/variable-as-table-name-in-node-js-mysql
+//https://stackoverflow.com/questions/53751902/node-js-mysql-insert-query-of-multiple-variables-er-parse-error
