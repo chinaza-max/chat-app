@@ -30,7 +30,7 @@ window.onload = function() {
     
     
     function play(){
-       let myAudio=new Audio('notification.wav');
+       let myAudio=new Audio('sound.mp3');
         myAudio.play();
     }
     

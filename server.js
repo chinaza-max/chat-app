@@ -40,7 +40,6 @@ io.of("/letgo").on('connection', (sock) => {
         let sql2=`SELECT * FROM ??`
         con.query(sql2,[data.roomName] ,function (err, result, fields) {
             if (err) throw err;
-      
             sock.emit('updateMessage',result);
         });
 
