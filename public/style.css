@@ -1,0 +1,292 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #FFFFFF;
+  overflow: hidden;
+}
+
+.nav {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, right top, color-stop(2%, blue), color-stop(82%, #25175e));
+  background: linear-gradient(to right, blue 2%, #25175e 82%);
+  height: 50px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.nav h3 {
+  text-align: center;
+  color: white;
+  padding-top: 15px;
+}
+
+.nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  max-width: 1200px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  list-style: none;
+  margin: 0 auto;
+}
+
+@media (max-width: 780px) {
+  .nav ul {
+    width: 90%;
+  }
+}
+
+.nav ul li h4 {
+  text-align: left;
+  margin-bottom: 10px;
+  line-height: 10px;
+  color: #dbdada;
+}
+
+.Container {
+  max-width: 1000px;
+  padding-top: 70px;
+  margin: 0 auto;
+  height: 79vh;
+  overflow: auto;
+}
+
+@media (max-width: 480px) {
+  .Container {
+    height: 78vh;
+  }
+}
+
+.Container h3 {
+  color: black;
+}
+
+.Container #form {
+  position: fixed;
+  bottom: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Container #form #Message {
+  width: 40%;
+  height: 34px;
+  font-size: 16px;
+}
+
+@media (max-width: 480px) {
+  .Container #form #Message {
+    width: 70%;
+  }
+}
+
+.Container #form #Message:focus {
+  outline: none;
+}
+
+.Container #form #send {
+  background-color: transparent;
+  width: 60px;
+  border: 1px solid blue;
+  border-top-right-radius: 60px;
+  border-bottom-right-radius: 60px;
+}
+
+.Container #form #send:hover {
+  background: -webkit-gradient(linear, left top, right top, color-stop(2%, blue), color-stop(82%, #25175e));
+  background: linear-gradient(to right, blue 2%, #25175e 82%);
+  width: 60px;
+  color: white;
+  border: 1px solid blue;
+  border-top-right-radius: 60px;
+  border-bottom-right-radius: 60px;
+}
+
+.Container #chats {
+  width: 100%;
+  height: 100%;
+}
+
+.Container #chats h5 {
+  text-align: center;
+  color: blue;
+}
+
+.Container #chats .chatsConatiner1 {
+  width: 100%;
+  float: left;
+}
+
+.Container #chats .chatsConatiner1 .text1 {
+  text-align: left;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 500px;
+  word-wrap: break-word;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 6px;
+  padding-left: 10px;
+  line-height: 22px;
+  background-color: blue;
+  color: white;
+  border-top-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  margin-top: 5px;
+  position: relative;
+  display: inline-block;
+}
+
+@media (max-width: 480px) {
+  .Container #chats .chatsConatiner1 .text1 {
+    max-width: 280px;
+  }
+}
+
+.Container #chats .chatsConatiner1 .text1::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 13px;
+  height: 13px;
+  background-color: blue;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  -webkit-transform: rotate(-5deg);
+          transform: rotate(-5deg);
+}
+
+@media (max-width: 480px) {
+  .Container #chats .chatsConatiner1 .texts {
+    max-width: 280px;
+  }
+}
+
+.Container #chats .chatsConatiner2 {
+  width: 100%;
+  float: right;
+}
+
+.Container #chats .chatsConatiner2 .text2 {
+  text-align: left;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 500px;
+  word-wrap: break-word;
+  margin-left: 4px;
+  padding: 6px;
+  padding-left: 10px;
+  line-height: 22px;
+  background-color: #82828b;
+  color: white;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  float: right;
+  margin-top: 5px;
+  margin-right: 4px;
+  position: relative;
+}
+
+@media (max-width: 480px) {
+  .Container #chats .chatsConatiner2 .text2 {
+    max-width: 280px;
+  }
+}
+
+.Container #chats .chatsConatiner2 .text2::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 13px;
+  height: 13px;
+  background-color: #82828b;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  -webkit-transform: rotate(-5deg);
+          transform: rotate(-5deg);
+}
+
+.Container #chats #id1 {
+  text-align: left;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 6px;
+  padding-left: 10px;
+  line-height: 22px;
+  background-color: blue;
+  float: left;
+  color: white;
+  border-top-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  margin-top: 5px;
+}
+
+.Container #chats #id1::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 13px;
+  height: 13px;
+  background-color: blue;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  -webkit-transform: rotate(-5deg);
+          transform: rotate(-5deg);
+}
+
+/*
+<form style="display: flex; flex-direction: row;" id="form" >
+    <input type="text"  placeholder="chat..." id="Message"/>
+    <input type="submit" value="send"/>
+</form>
+
+<div id="chat">
+    MY-CHATS
+</div>
+
+ <div class="chatsConatiner1">
+                <div class="text1" >
+                    jjjjjjjjjjjjjjjjjjjjjjjjjjj  jjjjjjjjjjjjjjjjjjjj   jjjjjjjjjjjjjjjjjjjjjjjjjjjjj   kkisn  isisisi   sssisi  jsjsjsjs  sjsjsjsjsj   isssi  ksksksksk    kkssisisisksks   isisisis   ksksksksk
+                </div>
+            </div>
+
+            <div class="chatsConatiner2">
+                 <div class="text2">
+                     jjjjjjjjjjjjjjjjjjjjjjjjjjj  jjjjjjjjjjjjjjjjjjjj   jjjjjjjjjjjjjjjjjjjjjjjjjjjjj   kkisn  isisisi   sssisi  jsjsjsjs  sjsjsjsjsj   isssi  ksksksksk    kkssisisisksks   isisisis   ksksksksk
+                 </div>
+            </div>
+           
+*/
+/*# sourceMappingURL=style.css.map */

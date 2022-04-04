@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="nav">
+        <h3>CHAT-ROOM</h4>
+    
+        <ul>
+            <li> <h4 id="name1"></h4></li>
+            <li> <h4 id="name2"></h4></li>
+        </ul>
+    </div>
+    <div class="Container">
+        <div id="chats">
+            <h5 class="chatsConnection"></h5>
+            <h5 class="chatsID"></h5>
+        </div>
+        <form style="display: flex; flex-direction: row;" id="form" >
+            <input type="text"  placeholder="chat..." id="Message" />
+            <input type="submit" value="send" id="send"/>
+        </form>
+    </div>
+
+    
+
+</body>
+<script src="http://localhost:8080/socket.io/socket.io.js"></script>
+<script src="/client.js"></script>  
+</html>

@@ -1,0 +1,237 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #FFFFFF;
+    overflow: hidden;
+}
+.nav{
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    background: linear-gradient(to right, blue 2%, #25175e 82%);
+    height: 50px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    h3{
+        text-align: center;
+        color: white;
+        padding-top: 15px;
+    }
+    ul{
+        display: flex;
+        padding: 0;
+        max-width: 1200px;
+        @media (max-width:780px) {
+            width: 90%;
+        }
+        flex-direction: row;
+        justify-content: space-between;
+        list-style: none;
+        margin: 0 auto;
+        li{
+            h4{
+                text-align: left;
+                margin-bottom: 10px;
+                line-height: 10px;
+                color: rgb(219, 218, 218);
+            }
+        }
+    }
+   
+}
+.Container{
+    max-width: 1000px;
+    padding-top: 70px;
+    margin: 0 auto;
+    height: 79vh;
+    @media (max-width:480px) {
+        height: 78vh;
+    }
+    overflow: auto;
+    h3{
+        color: black;
+    }
+    #form{
+        position: fixed;
+        bottom: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+        justify-content: center;
+        #Message{
+            width:40%;
+            @media (max-width:480px) {
+                width:70%;;
+            }
+            height: 34px;
+            font-size: 16px;
+        }
+        #Message:focus{
+            outline: none;
+        }
+        #send{
+            background-color: transparent;
+            width: 60px;
+            border: 1px solid blue;
+            border-top-right-radius: 60px;
+            border-bottom-right-radius:60px;
+        }
+        #send:hover{
+            background: linear-gradient(to right, blue 2%, #25175e 82%);
+            width: 60px;
+            color: white;
+            border: 1px solid blue;
+            border-top-right-radius: 60px;
+            border-bottom-right-radius:60px;
+        }
+    }
+    #chats{
+        width: 100%;
+        height: 100%;
+        h5{
+            text-align: center;
+            color: blue;
+        }
+        .chatsConatiner1{
+            width:100%;
+            float: left;
+            .text1{
+                text-align:left ;
+                width: fit-content;
+                max-width: 500px;
+                word-wrap: break-word;
+                margin-left: 4px;
+                margin-right: 4px;
+                padding: 6px;
+                padding-left: 10px;
+                line-height: 22px;
+                background-color: blue;
+                color: white;
+                border-top-right-radius: 16px; 
+                border-bottom-left-radius:16px ;
+                border-bottom-right-radius:16px ;
+                margin-top: 5px;
+                position: relative;
+                display: inline-block;
+                @media (max-width:480px) {
+                    max-width: 280px;
+                }
+            }
+            .text1::before{
+                content: '';
+                position: absolute;
+                top: -1px;
+                left: -1px;
+                width: 13px;
+                height: 13px;
+                background-color: blue;
+                border-top-right-radius: 20px; 
+                border-bottom-left-radius:20px ;
+                border-bottom-right-radius:20px ;
+                transform: rotate(-5deg);
+            }
+            .texts{
+                @media (max-width:480px) {
+                    max-width: 280px;
+                }
+            }
+        }
+       .chatsConatiner2{
+            width:100%;
+            float: right;
+            .text2{
+                text-align:left ;
+                width: fit-content;
+                max-width: 500px;
+                word-wrap: break-word;
+                margin-left: 4px;
+                padding: 6px;
+                padding-left: 10px;
+                line-height: 22px;
+                background-color: rgb(130, 130, 139);
+                color: white;
+                border-top-left-radius: 16px; 
+                border-bottom-left-radius:16px;
+                border-bottom-right-radius:16px;
+                float: right;
+                margin-top: 5px;
+                margin-right: 4px;
+                position: relative;
+                @media (max-width:480px) {
+                    max-width: 280px;
+                }
+            }
+            .text2::before{
+                content: '';
+                position: absolute;
+                top: -1px;
+                right: -1px;
+                width: 13px;
+                height: 13px;
+                background-color: rgb(130, 130, 139);;
+                border-top-left-radius: 16px; 
+                border-bottom-left-radius:16px;
+                border-bottom-right-radius:16px;
+                transform: rotate(-5deg);
+            }
+           
+       }
+       #id1{
+            text-align:left ;
+            width: fit-content;
+            margin-left: 4px;
+            margin-right: 4px;
+            padding: 6px;
+            padding-left: 10px;
+            line-height: 22px;
+            background-color: blue;
+            float: left;
+            color: white;
+            border-top-right-radius: 16px; 
+            border-bottom-left-radius:16px ;
+            border-bottom-right-radius:16px ;
+            margin-top: 5px;
+           &::before{
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 13px;
+            height: 13px;
+            background-color: blue;
+            border-top-right-radius: 20px; 
+            border-bottom-left-radius:20px ;
+            border-bottom-right-radius:20px ;
+            transform: rotate(-5deg);
+        }
+       }
+    }
+}
+
+
+/*
+<form style="display: flex; flex-direction: row;" id="form" >
+    <input type="text"  placeholder="chat..." id="Message"/>
+    <input type="submit" value="send"/>
+</form>
+
+<div id="chat">
+    MY-CHATS
+</div>
+
+ <div class="chatsConatiner1">
+                <div class="text1" >
+                    jjjjjjjjjjjjjjjjjjjjjjjjjjj  jjjjjjjjjjjjjjjjjjjj   jjjjjjjjjjjjjjjjjjjjjjjjjjjjj   kkisn  isisisi   sssisi  jsjsjsjs  sjsjsjsjsj   isssi  ksksksksk    kkssisisisksks   isisisis   ksksksksk
+                </div>
+            </div>
+
+            <div class="chatsConatiner2">
+                 <div class="text2">
+                     jjjjjjjjjjjjjjjjjjjjjjjjjjj  jjjjjjjjjjjjjjjjjjjj   jjjjjjjjjjjjjjjjjjjjjjjjjjjjj   kkisn  isisisi   sssisi  jsjsjsjs  sjsjsjsjsj   isssi  ksksksksk    kkssisisisksks   isisisis   ksksksksk
+                 </div>
+            </div>
+           
+*/
