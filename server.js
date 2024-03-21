@@ -32,9 +32,10 @@ app.get('*',function(req,res){
 });
 
 io.of("/letgo").on('connection', async (sock) => {
+    const connection = await mysql.getConnection();
+
     sock.on("room",async (data)=>{
   
-        const connection = await mysql.getConnection();
   
         console.log(data.roomName)
         console.log(data.roomName)
@@ -85,13 +86,15 @@ io.of("/letgo").on('connection', async (sock) => {
     })
   
     //handles chats
+
     sock.on("roomChats",async(data)=>{
-  
+
+
             await connection.execute(`INSERT INTO \`${data.room}\` (name, message, room) VALUES (?, ?, ?)`, [data.friendname, data.message, data.room]);
   
             const selectChatsQuery = `SELECT * FROM \`${data.room}\``;
             const [rows3] = await connection.execute(selectChatsQuery);
-              
+
             sock.to(data.room).emit("chats",rows3)
   
     })
@@ -105,6 +108,8 @@ io.of("/letgo").on('connection', async (sock) => {
         .to(room).emit("StopTypingFun","")
     })
 });
+
+
 server.listen(8080,()=>{
     console.log('Started on 8080');
 });
