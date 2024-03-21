@@ -8,7 +8,7 @@ try {
   console.error('Error reading ca-cert.pem:', error);
   process.exit(1);  
 }
-
+ 
 const pool = mysql.createPool({
   host: 'mysql-2a3faea4-mosesogbonna68-8779.a.aivencloud.com',
   user: 'avnadmin',
