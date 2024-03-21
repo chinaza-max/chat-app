@@ -14,7 +14,20 @@ app.use(express.static(clientpath));*/
 const server=http.createServer(app);
 const io = require("socket.io")(server, {
     cors: {
-      origin: "http://127.0.0.1:5500",
+
+      origin: (origin, callback) => {
+        const allowedOrigins = [
+          "http://127.0.0.1:5500",
+          "https://chat-app-u3pz.onrender.com",  
+        ];
+        if (allowedOrigins.includes(origin) || !origin) {
+          // The origin is allowed, so return true
+          callback(null, true);
+        } else {
+          // The origin is not allowed, so return an error
+          callback(new Error("This origin is not allowed."));
+        }
+      },
       methods: ["GET", "POST"]
     }
 });
