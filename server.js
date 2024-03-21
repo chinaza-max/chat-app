@@ -17,7 +17,6 @@ const io = require("socket.io")(server, {
 
       origin: (origin, callback) => {
         const allowedOrigins = [
-          "http://127.0.0.1:5500",
           "https://chat-app-u3pz.onrender.com",  
         ];
         if (allowedOrigins.includes(origin) || !origin) {

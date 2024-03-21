@@ -8,7 +8,7 @@ window.onload = function() {
     let roomID=''
     let room=window.location.pathname;
     
-    const sock2=io("http://localhost:8080/letgo");
+    const sock2=io("https://chat-app-u3pz.onrender.com/letgo");
     sock2.on('chats',Message); 
     sock2.on('newUser',Message2); 
     sock2.on('connectionStatus',Message3); 
