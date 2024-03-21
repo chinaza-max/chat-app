@@ -1,11 +1,11 @@
 const mysql = require('mysql');
 
 const pool = mysql.createPool({
-  host: '3s9.h.filess.io',
-  user: 'chat_seedeaten',
-  password: 'ff2bc9b5face448b072525661aaeec4e73495f8a',
-  database: 'chat_seedeaten',
-  port: 3307,
+  host: 'mysql-2a3faea4-mosesogbonna68-8779.a.aivencloud.com',
+  user: 'avnadmin',
+  password: 'AVNS_nAsdR_StFpv3BSX7X7W',
+  database: 'defaultdb',
+  port: 11389,
   connectionLimit: 10,
   acquireTimeout: 10000,
   // The maximum number of connection attempts to make before
@@ -16,6 +16,10 @@ const pool = mysql.createPool({
   queueLimit: 0,
   // The maximum number of connections that can be queued (default: no limit)
   debug: false, // Enable debugging log messages (default: false)
+  ssl: {
+    ca: caCertBuffer,
+    rejectUnauthorized: true,
+  },
 });
 
 const createDatabase = (callback) => {
@@ -29,7 +33,7 @@ const createDatabase = (callback) => {
     console.log('Connected to the database!');
 
     // Check if the database exists
-    connection.query('SHOW DATABASES LIKE \'chat_seedeaten\'', (error, rows) => {
+    connection.query('SHOW DATABASES LIKE \'defaultdb\'', (error, rows) => {
       if (error) {
         console.error('Error executing the query:', error);
         return callback(error);
@@ -37,7 +41,7 @@ const createDatabase = (callback) => {
 
       if (rows.length === 0) {
         // Create the database if it doesn't exist
-        connection.query('CREATE DATABASE IF NOT EXISTS chat_seedeaten', (error, results, fields) => {
+        connection.query('CREATE DATABASE IF NOT EXISTS defaultdb', (error, results, fields) => {
           if (error) {
             console.error('Error executing the query:', error);
             return callback(error);

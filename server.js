@@ -38,7 +38,7 @@ app.get('*',function(req,res){
 io.of("/letgo").on('connection', (sock) => { 
     sock.on("room",(data)=>{
 
-        con.query(`USE chat_seedeaten`);
+        con.query(`USE defaultdb`);
 
         console.log(data.roomName)
         console.log(data.roomName)
