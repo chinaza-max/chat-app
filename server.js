@@ -40,6 +40,14 @@ io.of("/letgo").on('connection', (sock) => {
 
         con.query(`USE chat_seedeaten`);
 
+        console.log(data.roomName)
+        console.log(data.roomName)
+        console.log(data.roomName)
+        console.log(data.roomName)
+        console.log(data.roomName)
+        console.log(data.roomName)
+
+
         sock.join(data.roomName)
         let roomNO=  Array.from(io.of("/letgo").in(data.roomName).adapter.rooms);
       
