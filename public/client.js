@@ -47,7 +47,8 @@ window.onload = function() {
     function Message(value){
 
         console.log(value)
-        
+        const text=value[value.length-1]
+
         if(document.getElementById("id1")){
             document.getElementById("id1").remove();
         }
@@ -55,7 +56,7 @@ window.onload = function() {
         let conatinerContent=document.createElement("div")
         conatiner.className="chatsConatiner1"
         conatinerContent.className="text1"
-        conatinerContent.innerText=value.message
+        conatinerContent.innerText=text.message
         conatiner.appendChild(conatinerContent);
         chat.appendChild(conatiner);
         play()
