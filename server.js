@@ -49,8 +49,8 @@ io.of("/letgo").on('connection', async (sock) => {
   
         const tableName = data.roomName;
   
-        const [rows] = await connection.execute(`CREATE TABLE IF NOT EXISTS \`${tableName}\` (name VARCHAR(255), message VARCHAR(255), room VARCHAR(255))`);
-  
+        const [rows] = await connection.execute(`CREATE TABLE IF NOT EXISTS \`${tableName}\` (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), message VARCHAR(255), room VARCHAR(255), PRIMARY KEY (id))`);
+
         const [rows2] = await connection.execute('SELECT * FROM ??', [tableName]);
   
         sock.emit('updateMessage', rows2);
