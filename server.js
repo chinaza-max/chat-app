@@ -21,7 +21,7 @@ const io = require("socket.io")(server, {
 
 app.get('/:id',function(req,res){
         res.sendFile(path.join(__dirname+'/client/index.html'));
-});
+}); 
 
 io.of("/letgo").on('connection', (sock) => { 
     sock.on("room",(data)=>{
