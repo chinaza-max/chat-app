@@ -49,10 +49,16 @@ io.of("/letgo").on('connection', async (sock) => {
   
         const tableName = data.roomName;
   
-        const [rows] = await connection.execute(`CREATE TABLE IF NOT EXISTS \`${tableName}\` (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), message VARCHAR(255), room VARCHAR(255), PRIMARY KEY (id))`);
 
-        const [rows2] = await connection.execute('SELECT * FROM ??', [tableName]);
-  
+        const createTableQuery = `CREATE TABLE IF NOT EXISTS \`${tableName}\` (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255), message VARCHAR(255), room VARCHAR(255), PRIMARY KEY (id))`;
+
+        const [rows] = await connection.execute(createTableQuery);
+
+
+        const selectQuery = `SELECT * FROM \`${tableName}\``;
+
+        const [rows2] = await connection.execute(selectQuery);
+
         sock.emit('updateMessage', rows2);
   
         for(room in roomNO){
@@ -83,8 +89,9 @@ io.of("/letgo").on('connection', async (sock) => {
   
             await connection.execute(`INSERT INTO \`${data.room}\` (name, message, room) VALUES (?, ?, ?)`, [data.friendname, data.message, data.room]);
   
-            const [rows3] = await connection.execute('SELECT * FROM ??', [data.room]);
-  
+            const selectChatsQuery = `SELECT * FROM \`${data.room}\``;
+            const [rows3] = await connection.execute(selectChatsQuery);
+              
             sock.to(data.room).emit("chats",rows3)
   
     })
