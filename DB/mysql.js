@@ -6,7 +6,7 @@ try {
   caCertBuffer = fs.readFileSync('./ca-cert.pem').toString();
 } catch (error) {
   console.error('Error reading ca-cert.pem:', error);
-  process.exit(1);
+  process.exit(1);  
 }
 
 const pool = mysql.createPool({
