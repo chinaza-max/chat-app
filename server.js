@@ -32,73 +32,72 @@ app.get('*',function(req,res){
 });
 
 io.of("/letgo").on('connection', async (sock) => {
-  sock.on("room",async (data)=>{
-
-      const connection = await mysql.getConnection();
-
-      console.log(data.roomName)
-      console.log(data.roomName)
-      console.log(data.roomName)
-      console.log(data.roomName)
-      console.log(data.roomName)
-      console.log(data.roomName)
-
-
-      sock.join(data.roomName)
-      let roomNO=  Array.from(io.of("/letgo").in(data.roomName).adapter.rooms);
-
-      const [rows] = await connection.execute('CREATE TABLE IF NOT EXISTS ?? (name VARCHAR(255), message VARCHAR(255), room VARCHAR(255))', [data.roomName]);
-
-      const [rows2] = await connection.execute('SELECT * FROM ??', [data.roomName]);
-
-      sock.emit('updateMessage', rows2);
-
-      for(room in roomNO){
-          if(roomNO[room][0]==data.roomName){
-              if(roomNO[parseInt(room)+1]){
-
-                  //its runs when the room has two user
-                  io.of("/letgo").in(data.roomName)
-                  .emit("newUser",data)
-              }
-          }
-      }
-      sock.on('disconnect',()=>{ 
-          io.of("/letgo").in(data.roomName)
-              .emit("connectionStatus","disconnected refresh")
-      })
-
-  });
-
-  //for exchanging user name
-  sock.on("updateName",(data)=>{
-      sock
-      .to(data.room).emit("updateName",data)
-  })
-
-  //handles chats
-  sock.on("roomChats",async(data)=>{
-
-    
-
-          await connection.execute('INSERT INTO ?? (`name`, `message`,`room`) VALUES (?, ?, ?)', [data.room, data.friendname, data.message, data.room]);
-
-          const [rows3] = await connection.execute('SELECT * FROM ??', [data.room]);
-
-          sock.to(data.room).emit("chats",rows3)
-
-  })
-
-  sock.on("Typing",(room)=>{
-      sock
-      .to(room).emit("typingFun","")
-  })
-  sock.on("StopTyping",(room)=>{
-      sock
-      .to(room).emit("StopTypingFun","")
-  })
+    sock.on("room",async (data)=>{
+  
+        const connection = await mysql.getConnection();
+  
+        console.log(data.roomName)
+        console.log(data.roomName)
+        console.log(data.roomName)
+        console.log(data.roomName)
+        console.log(data.roomName)
+        console.log(data.roomName)
+  
+  
+        sock.join(data.roomName)
+        let roomNO=  Array.from(io.of("/letgo").in(data.roomName).adapter.rooms);
+  
+        const tableName = data.roomName;
+  
+        const [rows] = await connection.execute(`CREATE TABLE IF NOT EXISTS \`${tableName}\` (name VARCHAR(255), message VARCHAR(255), room VARCHAR(255))`);
+  
+        const [rows2] = await connection.execute('SELECT * FROM ??', [tableName]);
+  
+        sock.emit('updateMessage', rows2);
+  
+        for(room in roomNO){
+            if(roomNO[room][0]==data.roomName){
+                if(roomNO[parseInt(room)+1]){
+  
+                    //its runs when the room has two user
+                    io.of("/letgo").in(data.roomName)
+                    .emit("newUser",data)
+                }
+            }
+        }
+        sock.on('disconnect',()=>{ 
+            io.of("/letgo").in(data.roomName)
+                .emit("connectionStatus","disconnected refresh")
+        })
+  
+    });
+  
+    //for exchanging user name
+    sock.on("updateName",(data)=>{
+        sock
+        .to(data.room).emit("updateName",data)
+    })
+  
+    //handles chats
+    sock.on("roomChats",async(data)=>{
+  
+            await connection.execute(`INSERT INTO \`${data.room}\` (name, message, room) VALUES (?, ?, ?)`, [data.friendname, data.message, data.room]);
+  
+            const [rows3] = await connection.execute('SELECT * FROM ??', [data.room]);
+  
+            sock.to(data.room).emit("chats",rows3)
+  
+    })
+  
+    sock.on("Typing",(room)=>{
+        sock
+        .to(room).emit("typingFun","")
+    })
+    sock.on("StopTyping",(room)=>{
+        sock
+        .to(room).emit("StopTypingFun","")
+    })
 });
-
 server.listen(8080,()=>{
     console.log('Started on 8080');
 });
