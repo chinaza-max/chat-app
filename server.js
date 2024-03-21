@@ -32,17 +32,11 @@ app.get('*',function(req,res){
 });
 
 io.of("/letgo").on('connection', async (sock) => {
-    const connection = await mysql.getConnection();
 
     sock.on("room",async (data)=>{
-  
-  
-        console.log(data.roomName)
-        console.log(data.roomName)
-        console.log(data.roomName)
-        console.log(data.roomName)
-        console.log(data.roomName)
-        console.log(data.roomName)
+
+        const connection = await mysql.getConnection();
+
   
   
         sock.join(data.roomName)
