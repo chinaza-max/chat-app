@@ -1,4 +1,4 @@
-let con=require('./DB/Mongodb.js');
+let con=require('./DB/mysql.js');
 
 
 
@@ -26,7 +26,7 @@ app.get('/:id',function(req,res){
 io.of("/letgo").on('connection', (sock) => { 
     sock.on("room",(data)=>{
 
-        con.query(`USE mydb2`);
+        con.query(`USE chat_seedeaten`);
 
         sock.join(data.roomName)
         let roomNO=  Array.from(io.of("/letgo").in(data.roomName).adapter.rooms);
