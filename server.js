@@ -89,13 +89,13 @@ io.of("/letgo").on('connection', async (sock) => {
 
     sock.on("roomChats",async(data)=>{
 
+        await connection.execute(`INSERT INTO \`${data.room}\` (name, message, room) VALUES (?, ?, ?)`, [data.friendname, data.message, data.room]);
 
-            await connection.execute(`INSERT INTO \`${data.room}\` (name, message, room) VALUES (?, ?, ?)`, [data.friendname, data.message, data.room]);
-  
-            const selectChatsQuery = `SELECT * FROM \`${data.room}\``;
-            const [rows3] = await connection.execute(selectChatsQuery);
+        const selectChatsQuery = `SELECT * FROM \`${data.room}\``;
+        const [rows3] = await connection.execute(selectChatsQuery);
 
-            sock.to(data.room).emit("chats",rows3)
+        console.log(rows3)
+        sock.to(data.room).emit("chats",rows3)
   
     })
   

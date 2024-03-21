@@ -46,6 +46,8 @@ window.onload = function() {
 
     function Message(value){
 
+        console.log(value)
+        
         if(document.getElementById("id1")){
             document.getElementById("id1").remove();
         }
