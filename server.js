@@ -83,6 +83,9 @@ io.of("/letgo").on('connection', async (sock) => {
 
     sock.on("roomChats",async(data)=>{
 
+        const connection = await mysql.getConnection();
+
+
         await connection.execute(`INSERT INTO \`${data.room}\` (name, message, room) VALUES (?, ?, ?)`, [data.friendname, data.message, data.room]);
 
         const selectChatsQuery = `SELECT * FROM \`${data.room}\``;
